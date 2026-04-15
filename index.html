@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Verification</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        .captcha-box { background: black; color: white; padding: 5px 15px; font-weight: bold; margin-right: 10px; }
+        input { padding: 5px; width: 200px; }
+        button { margin-top: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <p>Enter code and verify.</p>
+    <div>
+        <span id="captchaDisplay" class="captcha-box"></span>
+        <input type="text" id="userInput">
+    </div>
+    <button onclick="verify()">Verify QR</button>
+
+    <script>
+        // Generates a random 5-char code on load
+        let code = Math.random().toString(36).substring(2, 7);
+        document.getElementById('captchaDisplay').innerText = code;
+
+        function verify() {
+            let input = document.getElementById('userInput').value;
+            if (input === code) {
+                window.location.href = "details.html"; // Goes to your info
+            } else {
+                alert("Incorrect code. Please try again.");
+                location.reload(); // Refresh to get a new code
+            }
+        }
+    </script>
+</body>
+</html>
